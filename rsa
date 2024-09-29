@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <file>"
+    exit 1
+fi
+
+number=$(<"$1")
+
+for ((p=2; p<=number/2; p++)); do
+    if [ $((number % p)) -eq 0 ]; then
+        q=$((number / p))
+        echo "$number=$p*$q"
+        exit 0
+    fi
+done
+
+echo "No factors found for $number"
+
